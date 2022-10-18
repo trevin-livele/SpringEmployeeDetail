@@ -6,19 +6,22 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "EMPLOYEE_TABLE")
+
+
+
 public class Employee {
-    @Id
-    @GeneratedValue
+    @javax.persistence.Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
     private int id;
+
     private String name;
     private String email;
     private int role;
@@ -27,4 +30,12 @@ public class Employee {
     private int phone;
     private String maritalStatus;
     private String dateOfBirth;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = Math.toIntExact(id);
+    }
 }
